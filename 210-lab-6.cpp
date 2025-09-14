@@ -4,17 +4,21 @@
 #include <iostream>
 using namespace std;
 
-// Function prototype for entering data
+// Function prototypes
 void enterArrayData(double* arr, const int size);
+void outputArrayData(double* arr, const int size);
 
 int main() {
-    const int SIZE = 5;  // constant for array size
-    double* arr = new double[SIZE]; // dynamic array allocation
+    const int SIZE = 5; 
+    double* arr = new double[SIZE]; // dynamically allocated array
 
-    // At this stage, we only input data into the array
+    // First we fill the array
     enterArrayData(arr, SIZE);
 
-    delete[] arr; // free allocated memory
+    // Then we print out the values to verify input
+    outputArrayData(arr, SIZE);
+
+    delete[] arr; // release memory back to the system
     return 0;
 }
 
@@ -23,7 +27,16 @@ void enterArrayData(double* arr, const int size) {
     cout << "Data entry for the array:" << endl;
     for (int i = 0; i < size; i++) {
         cout << "    > Element #" << i << ": ";
-        cin >> *(arr + i);  // pointer notation
+        cin >> *(arr + i);
     }
     cout << "Data entry complete." << endl;
+}
+
+// Output the array elements
+void outputArrayData(double* arr, const int size) {
+    cout << "Outputting array elements: ";
+    for (int i = 0; i < size; i++) {
+        cout << *(arr + i) << " "; // pointer access
+    }
+    cout << endl;
 }
