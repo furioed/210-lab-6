@@ -7,18 +7,23 @@ using namespace std;
 // Function prototypes
 void enterArrayData(double* arr, const int size);
 void outputArrayData(double* arr, const int size);
+double sumArray(double* arr, const int size);
 
 int main() {
     const int SIZE = 5; 
-    double* arr = new double[SIZE]; // dynamically allocated array
+    double* arr = new double[SIZE]; // allocate memory dynamically
 
-    // First we fill the array
+    // Step 1: fill the array
     enterArrayData(arr, SIZE);
 
-    // Then we print out the values to verify input
+    // Step 2: display array contents
     outputArrayData(arr, SIZE);
 
-    delete[] arr; // release memory back to the system
+    // Step 3: calculate and display the sum
+    double total = sumArray(arr, SIZE);
+    cout << "Sum of values: " << total << endl;
+
+    delete[] arr; // cleanup
     return 0;
 }
 
@@ -36,7 +41,16 @@ void enterArrayData(double* arr, const int size) {
 void outputArrayData(double* arr, const int size) {
     cout << "Outputting array elements: ";
     for (int i = 0; i < size; i++) {
-        cout << *(arr + i) << " "; // pointer access
+        cout << *(arr + i) << " "; // use pointer arithmetic
     }
     cout << endl;
+}
+
+// Calculate and return the sum of the array
+double sumArray(double* arr, const int size) {
+    double sum = 0.0; // accumulator
+    for (int i = 0; i < size; i++) {
+        sum += *(arr + i);
+    }
+    return sum;
 }
